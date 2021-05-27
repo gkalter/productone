@@ -1,0 +1,45 @@
+body>
+	  <h1> Somalian Health Facilities</h1>
+	  <p> </p>
+  <!-- Add multiple pages to web page-->
+  <!-- active class displays the grey box around current page-->
+  <ul>
+    	<li><a class="active" href="index.html" target="_self">Health Facilities</a></li>
+    <li><a href="settlement.html" target="_self">Settlements</a></li>
+    <li><a href="fews.html" target="_self">Food Security</a></li>
+  </ul>
+  <br>
+
+  <div id="map"></div>
+
+  <script>
+
+  // initialize the map
+     // initialize the map
+  var map = L.map('map').setView([2, 45], 5);
+
+  // load a tile layer
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+}).addTo( map );
+
+	   // load GeoJSON from an external file
+  $.getJSON("data/health.geojson",function(data){
+    var healthIcon = L.icon({
+      iconUrl: 'health_facility.png',
+      iconSize: [20,16]
+    });
+    L.geoJson(data,{
+      pointToLayer: function(feature,latlng){
+	    return L.marker(latlng,{icon: healthIcon});
+      }
+    }).addTo(map);
+  });
+
+    map.setZoom(4);
+
+
+
+  </script>
+</body>
+</html>

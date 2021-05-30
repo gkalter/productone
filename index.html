@@ -32,7 +32,7 @@
   <!-- active class displays the grey box around current page-->
   <ul>
     	<li><a class="active" href="index.html" target="_self">Health Facilities</a></li>
-    <li><a href="settlements.html" target="_self">Settlements</a></li>
+    <li><a href="settlement.html" target="_self">Settlements</a></li>
     <li><a href="Food_Security.html" target="_self">Food Security</a></li>
   </ul>
   <br>
@@ -51,7 +51,7 @@
 }).addTo( map );
 
 	   // load GeoJSON from an external file
-  $.getJSON("data/health.geojson",function(data){
+  $.getJSON("data/unicef.geojson",function(data){
     var healthIcon = L.icon({
       iconUrl: 'health_facility.png',
       iconSize: [20,16]
@@ -63,7 +63,20 @@
     }).addTo(map);
   });
 
-    map.setZoom(4);
+  var adminLayer = null;
+
+  // Add Admin Polygons
+  $.getJSON("data/Food_Security_1.geojson",function(data){
+      adminLayer = L.geoJson(data).addTo(map);
+  });
+
+  // Set function for color ramp w/ colors from Colorbrewer
+  function setColor(Wast_Text){
+  return ML2" == '3' ? '#e6550d' :
+     ML2== '2' ? '#fdae6b' ;
+  };
+
+
 
 
 

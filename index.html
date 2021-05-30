@@ -113,21 +113,19 @@ legend.onAdd = function(map) {
 
 // Add Legend to Map
 legend.addTo(map);
-		// Create Leaflet Control Object for Legend
+    // Create Leaflet Control Object for Legend
 
-		// Add Scale Bar to Map
-		L.control.scale({position: 'bottomleft'}).addTo(map);
-
-
-		//Adding the search geocoder
-		L.Control.geocoder({
-		  position: "topleft",
-		  placeholder: "Enter place name",
-		  errorMessage: "No place found.",
-		})
-		.addTo(map);	</script>
+    // Add Scale Bar to Map
+    L.control.scale({position: 'bottomleft'}).addTo(map);
 
 
+    //Adding the search geocoder
+    L.Control.geocoder({
+      position: "topleft",
+      placeholder: "Enter place name",
+      errorMessage: "No place found.",
+    })
+    .addTo(map);
 
 
 

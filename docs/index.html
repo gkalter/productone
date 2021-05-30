@@ -13,7 +13,84 @@
   <script src="./leaflet-heat.js"></script>
 
 
+  <style>
+  		body {
+  			margin: 0px;
+  		}
 
+  		h1 {
+  			float: left;
+  			padding-left: 10px;
+  			font-family: Helvetica, Arial, Verdana;
+        font-size: 42px
+      }
+
+      p {
+        font-family: Helvetica, Arial, Verdana;
+        font-size: 18px;
+  			padding-left: 10px;
+      }
+
+  		#wrapper {
+  			width: 800px;
+  		}
+
+  		#map {
+  			width: 780px;
+  			margin: 0 auto;
+  			height: 500px;
+  		}
+
+  		#controls {
+  			width: 100%;
+  			margin: 0 auto;
+  			padding: 15px;
+  		}
+
+  		#narrative {
+  			width: 780px;
+  			height: 500px;
+  			margin: 0 auto;
+  			padding: 15px;
+  		}
+
+  		#header {
+  			margin-top: 0px;
+  			margin-bottom: 0px;
+  		}
+  		.legend {
+  	line-height: 18px;
+  	color: #333333;
+  	font-family: Helvetica, sans-serif;
+  	padding: 6px 8px;
+  	background: white;
+  	background: rgba(255,255,255,0.8);
+  	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  	border-radius: 5px;
+  }
+
+  .legend i {
+  	width: 18px;
+  	height: 18px;
+  	float: left;
+  	margin-right: 8px;
+  	opacity: 0.7;
+  }
+
+  .legend img {
+  	width: 18px;
+  	height: 18px;
+  	float: left;
+  }
+
+  .legend p {
+  	font-size: 12px;
+  	line-height: 18px;
+  	margin: 0;
+  }
+
+  </style>
+</head>
   <!-- Add CSS styling info for the map -->
   <style type="text/css">
 
@@ -26,16 +103,9 @@
 
 
 <body>
-	  <h1> Somalian Health Facilities</h1>
+	  <h1> An Overview of the Situation in Somalia </h1>
 	  <p> </p>
-  <!-- Add multiple pages to web page-->
-  <!-- active class displays the grey box around current page-->
-  <ul>
-    	<li><a class="active" href="index.html" target="_self">Health Facilities</a></li>
-    <li><a href="settlement.html" target="_self">Settlements</a></li>
-    <li><a href="Food_Security.html" target="_self">Food Security</a></li>
-  </ul>
-  <br>
+
 
   <div id="map"></div>
 
@@ -43,7 +113,7 @@
 
   // initialize the map
      // initialize the map
-  var map = L.map('map').setView([2, 45], 5);
+  var map = L.map('map').setView([10, 45], 5);
 
   // Add Tile Layer
   		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {

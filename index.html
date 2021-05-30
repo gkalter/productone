@@ -45,10 +45,12 @@
      // initialize the map
   var map = L.map('map').setView([2, 45], 5);
 
-  // load a tile layer
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-}).addTo( map );
+  // Add Tile Layer
+  		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+  			attribution: 'Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="url here">Who???</a>',
+  			maxZoom: 17,
+  			minZoom: 1,
+  		}).addTo(map);
 
 	   // load GeoJSON from an external file
   $.getJSON("data/unicef.geojson",function(data){
@@ -63,18 +65,68 @@
     }).addTo(map);
   });
 
-  var adminLayer = null;
-
-  // Add Admin Polygons
-  $.getJSON("data/Food_Security_1.geojson",function(data){
-      adminLayer = L.geoJson(data).addTo(map);
+  $.getJSON("data/Somalia_Settlements.geojson",function(data){
+  var healthIcon = L.icon({
+   iconUrl: 'data/House.png',
+   iconSize: [20,16]
+  });
+  L.geoJson(data,{
+   pointToLayer: function(feature,latlng){
+   return L.marker(latlng,{icon: healthIcon});
+   }
+  }).addTo(map);
   });
 
-  // Set function for color ramp w/ colors from Colorbrewer
-  function setColor(Wast_Text){
-  return ML2" == '3' ? '#e6550d' :
-     ML2== '2' ? '#fdae6b' ;
-  };
+
+    var adminLayer = null;
+
+    // Add Admin Polygons
+    $.getJSON("data/Food_Security_1.geojson",function(data){
+        adminLayer = L.geoJson(data).addTo(map);
+    });
+
+    function setColor(ML2){
+return ML2 == '3' ? '#e6550d' :
+  ML2 == '2' ? '#fdae6b' :
+                   '#d4cfcd';
+};
+
+
+var legend = L.control({
+  position: 'topright'
+});
+
+// Function that runs when legend is added to map
+legend.onAdd = function(map) {
+
+  // Create Div Element and Populate it with HTML
+  var div = L.DomUtil.create('div', 'legend');
+  div.innerHTML += '<b> Likelihood of food insecurity </b><br/>';
+  div.innerHTML += '<i style="background: #e6550d"></i><p>High</p>';
+  div.innerHTML += '<i style="background: #fdae6b"></i><p>Medium</p>';
+  div.innerHTML += '<hr><img src= "data/House.png"><p>Settlements</p>';
+  div.innerHTML += '<img src= "health_facility.png"><p>Facilities</p>';
+
+  // Return the Legend div containing the HTML content
+  return div;
+};
+
+// Add Legend to Map
+legend.addTo(map);
+		// Create Leaflet Control Object for Legend
+
+		// Add Scale Bar to Map
+		L.control.scale({position: 'bottomleft'}).addTo(map);
+
+
+		//Adding the search geocoder
+		L.Control.geocoder({
+		  position: "topleft",
+		  placeholder: "Enter place name",
+		  errorMessage: "No place found.",
+		})
+		.addTo(map);	</script>
+
 
 
 

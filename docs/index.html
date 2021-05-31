@@ -125,7 +125,7 @@
 	   // load GeoJSON from an external file
   $.getJSON("data/unicef.geojson",function(data){
     var healthIcon = L.icon({
-      iconUrl: 'data/health_facility.png',
+      iconUrl: 'health_facility.png',
       iconSize: [20,16]
     });
     L.geoJson(data,{
@@ -148,6 +148,17 @@
   });
 
 
+  function style(feature) {
+    return {
+      fillColor: setColor(feature.properties.ML2),
+      fillOpacity: 0.7,
+      weight: 0,
+      opacity: 0,
+      color: '#ffffff',
+      dashArray: '0'
+    };
+  }
+
     var adminLayer = null;
 
     // Add Admin Polygons
@@ -155,11 +166,16 @@
         adminLayer = L.geoJson(data).addTo(map);
     });
 
-    function setColor(ML2){
-return ML2 == '3' ? '#e6550d' :
-  ML2 == '2' ? '#fdae6b' :
-                   '#d4cfcd';
-};
+    // Set function for color ramp w/ colors from Colorbrewer
+  function setColor(ML2){
+  return ML2 = 3 ? '#e6550d' :
+    ML2 = 2 ? '#fdae6b' :
+                     '#d4cfcd';
+  };
+
+  // Set style function that sets fill color property equal to FI_Class
+
+
 
 
 var legend = L.control({
@@ -172,10 +188,10 @@ legend.onAdd = function(map) {
   // Create Div Element and Populate it with HTML
   var div = L.DomUtil.create('div', 'legend');
   div.innerHTML += '<b> Likelihood of food insecurity </b><br/>';
-  div.innerHTML += '<i style="background: #e6550d"></i><p>High</p>';
-  div.innerHTML += '<i style="background: #fdae6b"></i><p>Medium</p>';
+  div.innerHTML += '<i style="background: #e6550d"></i><p>Crisis</p>';
+  div.innerHTML += '<i style="background: #fdae6b"></i><p>Stressed</p>';
   div.innerHTML += '<hr><img src= "data/House.png"><p>Settlements</p>';
-  div.innerHTML += '<img src= "data/health_facility.png"><p>Facilities</p>';
+  div.innerHTML += '<img src= "health_facility.png"><p>Facilities</p>';
 
   // Return the Legend div containing the HTML content
   return div;

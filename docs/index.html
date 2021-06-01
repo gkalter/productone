@@ -133,7 +133,7 @@ $.getJSON("data/unicef.geojson",function(data){
     // set coffeeShops to GeoJSON, add GeoJSON layer to the map once the file is loaded
     coffeeShopPoints = L.geoJson(data,{
         onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.name);
+            layer.bindPopup(feature.properties.FACILITY_N);
         }
     }).addTo(map);
 });

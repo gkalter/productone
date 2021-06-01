@@ -12,6 +12,7 @@
   <style>
   		body {
   			margin: 0px;
+			background-color: #8E8D8A;
   		}
 
   		h1 {
@@ -103,8 +104,7 @@
     <button id="toggleButton">Show All Settlements</button>
     <button id="filterSBux">Hide All Settlements</button>
 			
-			<div id="narrative"><p> The above map is a stylized map indicating where malnutrition is throughout Mali as well as what health resources are available to the public. While I didn’t ver from the tutorial I do think that there is a lot that could be done to the map,  much of which includes messing with symbology to increase legibility or introducing some form of additional interactive functionality to the map. I worry however, that while the symbology could be cleaned up, these official markers from the OCHA should not be changed significantly in order to standardize what the target audience should expect to find. Additionally,  while perhaps too much for one map, there could have been several similar maps that showcased these phenomena in Mali, just simply highlighted in various ways. For example the background provincial colors could be corrected to normalize for access to healthcare per person or per certain distance. This in my opinion will more clearly tie together child wasting and its relationship to healthcare although it is somewhat evident to a map literate person that eastern provinces away from the Sahara have much better health infrastructure. Conversely, I have no sense of the population living in the Sahara which is historically extremely low.  As noted in the tutorial, it would be good to have some form of functionality that hides some of the icons at a time as it is simply too crowded of a map. Additionally, the data points are catalogued relatively well it could be good if some form of functionality was added that strengthened the capacity of the search bar, although I’m not entirely sure what that would be.
-      </p></div>
+			
 
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -128,23 +128,7 @@
 
 	   // load GeoJSON from an external file
 
-     // load GeoJSON from an external file
-$.getJSON("data/unicef.geojson",function(data){
-    // set coffeeShops to GeoJSON, add GeoJSON layer to the map once the file is loaded
-    coffeeShopPoints = L.geoJson(data,{
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.FACILITY_N);
-        }
-    }).addTo(map);
-});
-
-function toggleCoffeeShops(){
-    if(map.hasLayer(coffeeShopPoints)){
-        removeCoffeeShops();
-    } else {
-        addCoffeeShops();
-    }
-};
+    
   $.getJSON("data/unicef.geojson",function(data){
     var healthIcon = L.icon({
       iconUrl: 'data/health_facility.png',

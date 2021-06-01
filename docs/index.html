@@ -105,7 +105,9 @@
 			<!-- Here is the code for a button if we were going to add them.
 			<button class="button" id="toggleButton">BUTTON!</button>
 			-->
-			
+			<div id="narrative"><p> The above map is a stylized map indicating where malnutrition is throughout Mali as well as what health resources are available to the public. While I didn’t ver from the tutorial I do think that there is a lot that could be done to the map,  much of which includes messing with symbology to increase legibility or introducing some form of additional interactive functionality to the map. I worry however, that while the symbology could be cleaned up, these official markers from the OCHA should not be changed significantly in order to standardize what the target audience should expect to find. Additionally,  while perhaps too much for one map, there could have been several similar maps that showcased these phenomena in Mali, just simply highlighted in various ways. For example the background provincial colors could be corrected to normalize for access to healthcare per person or per certain distance. This in my opinion will more clearly tie together child wasting and its relationship to healthcare although it is somewhat evident to a map literate person that eastern provinces away from the Sahara have much better health infrastructure. Conversely, I have no sense of the population living in the Sahara which is historically extremely low.  As noted in the tutorial, it would be good to have some form of functionality that hides some of the icons at a time as it is simply too crowded of a map. Additionally, the data points are catalogued relatively well it could be good if some form of functionality was added that strengthened the capacity of the search bar, although I’m not entirely sure what that would be. </p></div>
+		</div>
+	</div>
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -116,7 +118,8 @@
 
   // initialize the map
      // initialize the map
-  var map = L.map('map').setView([10, 45], 5);
+     var map = L.map('map',{ center: [2, 50], zoom: 5});
+
 
   // Add Tile Layer
   		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
@@ -128,8 +131,8 @@
 	   // load GeoJSON from an external file
   $.getJSON("data/unicef.geojson",function(data){
     var healthIcon = L.icon({
-      iconUrl: 'data/health_facility.png',
-      iconSize: [20,16]
+      iconUrl: 'health_facility.png',
+      iconSize: [10,8]
     });
     L.geoJson(data,{
       pointToLayer: function(feature,latlng){
@@ -141,7 +144,7 @@
   $.getJSON("data/Somalia_Settlements.geojson",function(data){
   var healthIcon = L.icon({
    iconUrl: 'data/House.png',
-   iconSize: [20,16]
+   iconSize: [10,8]
   });
   L.geoJson(data,{
    pointToLayer: function(feature,latlng){
@@ -195,7 +198,7 @@ legend.onAdd = function(map) {
   div.innerHTML += '<i style="background: #e6550d"></i><p>Crisis</p>';
   div.innerHTML += '<i style="background: #fdae6b"></i><p>Stressed</p>';
   div.innerHTML += '<hr><img src= "data/House.png"><p>Settlements</p>';
-  div.innerHTML += '<img src= "data/health_facility.png"><p>Facilities</p>';
+  div.innerHTML += '<img src= "health_facility.png"><p>Facilities</p>';
 
   // Return the Legend div containing the HTML content
   return div;
@@ -221,8 +224,5 @@ legend.addTo(map);
 
 
   </script>
-			<div id="narrative"><p> The above map is a stylized map indicating where malnutrition is throughout Mali as well as what health resources are available to the public. While I didn’t ver from the tutorial I do think that there is a lot that could be done to the map,  much of which includes messing with symbology to increase legibility or introducing some form of additional interactive functionality to the map. I worry however, that while the symbology could be cleaned up, these official markers from the OCHA should not be changed significantly in order to standardize what the target audience should expect to find. Additionally,  while perhaps too much for one map, there could have been several similar maps that showcased these phenomena in Mali, just simply highlighted in various ways. For example the background provincial colors could be corrected to normalize for access to healthcare per person or per certain distance. This in my opinion will more clearly tie together child wasting and its relationship to healthcare although it is somewhat evident to a map literate person that eastern provinces away from the Sahara have much better health infrastructure. Conversely, I have no sense of the population living in the Sahara which is historically extremely low.  As noted in the tutorial, it would be good to have some form of functionality that hides some of the icons at a time as it is simply too crowded of a map. Additionally, the data points are catalogued relatively well it could be good if some form of functionality was added that strengthened the capacity of the search bar, although I’m not entirely sure what that would be. </p></div>
-		</div>
-	</div>
 </body>
 </html>
